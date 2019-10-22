@@ -11,10 +11,19 @@ namespace esercitazione_thread
     {
         static void Main(string[] args)
         {
-            Thread myThread = new Thread(()=>
+            Thread myThread = new Thread(() =>
             {
+                Console.WriteLine("MyThread è iniziato");
+                Thread.Sleep(1000);
+                Console.WriteLine("MyThread è terminato");
+            });
 
-            }
+            //esecuzione di mythread
+            myThread.Start();
+
+            Thread.Sleep(500);
+            Console.WriteLine("main thread");
+            Console.ReadLine();
         }
     }
 }
