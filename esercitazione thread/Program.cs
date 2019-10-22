@@ -23,6 +23,16 @@ namespace esercitazione_thread
 
             Thread.Sleep(500);
             Console.WriteLine("main thread");
+
+            Console.WriteLine();
+
+            string someVariabile = "matteo Tumiati";
+
+            var workerThread = new Thread((o) =>
+             {
+                 Console.WriteLine("saluti da :{0}", someVariabile);
+             });
+
             Console.ReadLine();
         }
     }
