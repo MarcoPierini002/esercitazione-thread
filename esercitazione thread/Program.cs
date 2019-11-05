@@ -76,8 +76,20 @@ namespace esercitazione_thread
                 workerThread.Abort();
             }
             Console.WriteLine("termine applicazione");
-                
 
+            var workerthread = new Thread(() =>
+           {
+               try
+               {
+                   Console.WriteLine("inizio di un thread molto lungo");
+                   Thread.Sleep(5000);
+                   Console.WriteLine("termine worker thread");
+               }
+               catch (ThreadAbortException ex)
+               {
+                    //qui va messo il codice dell'eccezione
+                }
+           });
 
             Console.ReadLine();
         }
