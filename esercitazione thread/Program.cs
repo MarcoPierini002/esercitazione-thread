@@ -91,6 +91,9 @@ namespace esercitazione_thread
                 }
            });
 
+            workerThread.IsBackground = false;
+            workerThread.Priority = ThreadPriority.Lowest;
+
             Console.ReadLine();
         }
     }
