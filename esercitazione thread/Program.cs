@@ -40,28 +40,43 @@ namespace esercitazione_thread
 
 
 
-            var list = new List<Thread>();
-            //qui creiamo ed eseguiamo cinque worker thread 
-            for (int index = 0 ; index < 5 ; index++)
+            //var list = new List<Thread>();
+            ////qui creiamo ed eseguiamo cinque worker thread 
+            //for (int index = 0 ; index < 5 ; index++)
+            //{
+            //    var myThread = new Thread((currentIndex) =>
+            //   {
+            //       Console.WriteLine("thread {0} è iniziato", currentIndex);
+            //       Thread.Sleep(500);
+            //       Console.WriteLine("thread {0} è terminato", currentIndex);
+            //   });
+            //    myThread.Start(index);
+            //    list.Add(myThread);
+            //}
+            ////attesa  del completamento di ognuno dei worker thread 
+            //foreach(Thread thread in list)
+            //{
+            //    thread.Join();
+            //}
+            //Console.WriteLine("esecuzione di tutti i therad terminata");
+
+            var workerThread = new Thread(() =>
             {
-                var myThread = new Thread((currentIndex) =>
-               {
-                   Console.WriteLine("thread {0} è iniziato", currentIndex);
-                   Thread.Sleep(500);
-                   Console.WriteLine("thread {0} è terminato", currentIndex);
-               });
-                myThread.Start(index);
-                list.Add(myThread);
-            }
-            //attesa  del completamento di ognuno dei worker thread 
-            foreach(Thread thread in list)
+                Console.WriteLine("inizio di un thread molto lungo");
+                Thread.Sleep(5000);
+                Console.WriteLine("termine worker thread");
+            });
+
+            workerThread.Start();
+            workerThread.Join(500);
+
+            //se il worker thread è ancora in esecuzione lo si cancella
+            if (workerThread.ThreadState !=ThreadState.Stopped)
             {
-                thread.Join();
+                workerThread.Abort();
             }
-            Console.WriteLine("esecuzione di tutti i therad terminata");
-
-
-
+            Console.WriteLine("termine applicazione");
+                
 
 
             Console.ReadLine();
