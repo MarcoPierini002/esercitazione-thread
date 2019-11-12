@@ -19,8 +19,26 @@ namespace EsercizioTask
             });
 
             //costruzione di un task con parametro in input
-            var parameterTask = Task.Factory.StartNew(name)=>
+            var parameterTask = Task.Factory.StartNew((name) =>
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("ciao da parameterTask,{0}", name);
+            }, "Matteo Tumiati");
+
+            //costruzione di un task che ritorna un risultato
+
+            var resulutTask = Task.Factory.StartNew((inputValue) =>
+            PerformSomeLongCalculation(inputValue), 5000D);
+            resulutTask.Start();
                 
+                
+
+                
+        }
+
+        private static void PerformSomeLongCalculation(object inputValue)
+        {
+            throw new NotImplementedException();
         }
     }
 }
